@@ -1,41 +1,46 @@
 Vogliamo creare uno spazio virtuale in stile social network dove gli utenti possano condividere le proprie esperienze. Ogni utente può creare dei post, al quale può aggiungere media come foto e video. Gli altri utenti possono interagire con il post esprimendo il loro gradimento attraverso un semplice "mi piace".
 
-## Table: User
+## Table: Users
 
-- id
-- name
-- surname
-- password
-- date_of_birth
-- email
-- telefono
+- id: BIGINT AI UNIQUE PK NOT NULL
+- name: VARCHAR(20) NOT NULL 
+- surname: VARCHAR(20) NOT NULL
+- password: VARCHAR(20) NOT NULL
+- date_of_birth: DATE NOT NULL 
+- email: VARCHAR(30) NOT NULL UNIQUE
+- telefono: INT NULL 
 
-## Table: Post
+## Table: Posts
 
-- id
-- user_id
-- name
-- date_post
-- description
-- tags
+- id: BIGINT AI UNIQUE PK NOT NULL
+- user_id: FK
+- title: VARCHAR(30) NOT NULL
+- date_post: DATETIME DEFAULT NULL
+- description: TEXT NOT NULL
+- tags: VARCHAR(30) NULL
 
-## Table: Media
+## Table: Medias
 
-- id
-- post_id
-- photo
-- video
+- id BIGINT AI UNIQUE PK NOT NULL
+- photo NULL
+- video NULL
+
+## Table: media_post
+
+- media_id
+- post_id 
 
 ## Table: Likes
 
-- id
-- user_id
-- post_id
+- id BIGINT AI UNIQUE PK NOT NULL
+- user_id: FK
+- post_id: FK
 
 ## Table: Comments
 
-- id
-- post_id
-- text
-- date_comment
+- id BIGINT AI UNIQUE PK NOT NULL
+- post_id: FK
+- user_id: FK
+- text: TEXT NOT NULL
+- date_comment: DATETIME NULL DEFAULT
 
